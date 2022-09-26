@@ -11,13 +11,23 @@
     />
     <script src="https://cdn.muicss.com/mui-latest/js/mui.min.js"></script>
     <title>Podcast Questions</title>
+    <meta
+      name="google-site-verification"
+      content="-wkROZWoNyrn1XhbwiUtxe88bSqN5fBwS4hN0wZyH8M"
+    />
   </head>
   <body>
+    <button
+      class="mui-btn mui-btn--fab mui-btn--primary floating-btn"
+      id="modal-btn"
+    >
+      All
+    </button>
     <div id="sidebar">
       <div class="mui--text-white mui--text-display1 mui--align-vertical">
         Podcast Questions
         <br />
-        <small class="author">by Nguyen</small>
+        <small class="author">by MixiGaming</small>
       </div>
     </div>
     <div id="content" class="mui-container-fluid">
@@ -33,7 +43,9 @@
               <input
                 type="text"
                 id="question-input"
-                required minlength="10" maxlength="256"
+                required
+                minlength="10"
+                maxlength="1000"
               />
               <label for="question-input">What do you want to ask?</label>
             </div>
@@ -55,6 +67,16 @@
           <div id="list"></div>
         </div>
       </div>
+      <footer id="footer" class="footer">
+        <div class="container">
+          <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+          </div>
+        </div>
+      </footer>
     </div>
   </body>
 </html>

@@ -5,7 +5,8 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  animation: changeBg 3s cubic-bezier(0.79, 0.14, 0.15, 0.86);
 }
 
 html,
@@ -17,8 +18,13 @@ button {
   -moz-osx-font-smoothing: grayscale;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
 }
-#content {
-  animation: hide 3s cubic-bezier(.79,.14,.15,.86);
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+#content, .floating-btn {
+  animation: hide 3s cubic-bezier(0.79, 0.14, 0.15, 0.86);
 }
 
 /**
@@ -30,6 +36,7 @@ button {
   padding: 15px;
   animation: sidebar-anim 2s cubic-bezier(0.65, 0.05, 0.36, 1);
   min-width: 210px;
+  border-radius: 0 0 30px 0;
   z-index: 99;
 }
 .author {
@@ -48,30 +55,163 @@ button {
   }
 }
 @keyframes hide {
-  0%, 58%{
+  0%,
+  58% {
     opacity: 0;
   }
   100% {
-
+  }
+}
+@keyframes changeBg {
+  0% {
+    background-color: #000;
+  }
+}
+#list {
+  max-height: 55vh;
+  overflow-y: auto;
+}
+.footer {
+  margin-top: 200px;
+  padding: 24px 0;
+  position: relative;
+  background: #3586ff;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  min-width: 100vw;
+}
+.footer .wave {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  width: 100%;
+  min-height: 100px;
+  max-height: 100px;
+  background: url(../src/img/wave.png);
+  background-size: 1000px 100px;
+  z-index: 0;
+}
+.footer .wave#wave1 {
+  z-index: 10;
+  opacity: 1;
+  bottom: 0;
+  animation: animateWave 4s linear infinite;
+}
+.footer .wave#wave2 {
+  z-index: 10;
+  opacity: 0.5;
+  bottom: 10px;
+  animation: animateWave_02 4s linear infinite;
+}
+.footer .wave#wave3 {
+  z-index: 10;
+  opacity: 0.2;
+  bottom: 15px;
+  animation: animateWave 3s linear infinite;
+}
+.footer .wave#wave4 {
+  z-index: 10;
+  opacity: 0.7;
+  bottom: 20px;
+  animation: animateWave_02 3s linear infinite;
+}
+@keyframes animateWave {
+  0% {
+    background-position-x: 1000px;
+  }
+  100% {
+    background-position-x: 0px;
+  }
+}
+@keyframes animateWave_02 {
+  0% {
+    background-position-x: 0px;
+  }
+  100% {
+    background-position-x: 1000px;
   }
 }
 
 @media (min-width: 768px) {
+  #content {
+    margin-left: 180px;
+  }
+  input,
+  textarea,
+  select {
+    font-size: 14px;
+  }
   #sidebar {
-    position: fixed;
+    position: absolute;
     top: 0;
     bottom: 0;
     width: 180px;
-    height: 100%;
+    max-height: 100vh;
     padding-top: 30px;
   }
+  #sidebar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 240px;
+    min-width: 45px;
+    min-height: 45px;
+    background-color: #2196f3;
+    animation: hide 3s cubic-bezier(0.79, 0.14, 0.15, 0.86);
+  }
+  #sidebar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 240px;
+    min-width: 45px;
+    min-height: 45px;
+    background-color: #ffffff;
+    border-radius: 30px 0 0 0;
+    z-index: 0;
+    animation: hide 3s cubic-bezier(0.79, 0.14, 0.15, 0.86);
+  }
+}
+
+.floating-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  margin: 0;
+  z-index: 999;
+}
+.modal {
+  max-width: 600px;
+  max-height: 80vh;
+  margin: 100px auto;
+  overflow-y: auto;
+  background-color: #fff;
+  border-radius: 10px;
+  opacity: 1;
+  animation: hide 0.5s ease-in-out;
+}
+.modal > h1 {
+  text-align: center;
+}
+.modal > .modal-content {
+  padding: 1rem;
+}
+.error {
+  color: red;
 }
 
 /**
   * Content CSS
   */
-@media (min-width: 768px) {
-  #content {
-    margin-left: 180px;
+@media (max-width: 768px) {
+  #list {
+    max-height: 17vh;
+    overflow-y: auto;
+  }
+}
+@media (max-width: 608px) {
+  .modal {
+    margin: 100px 10px;
   }
 }
